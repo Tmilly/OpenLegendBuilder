@@ -1,0 +1,27 @@
+doctype html
+html
+    head
+        title #{title}
+        link(rel='stylesheet', href='/css/style.css')
+        meta(name='viewport', content='width=device-width, initial-scale=1')
+    body(onload="javascript:loadPage();")
+        main
+            block header
+                header.header
+                    h1 #{title}
+            block content
+                form(action="")
+                    fieldset
+                        h2 Character Description
+                        p Character Name:
+                        input(type="text", name="characterName")
+                        p Race:
+                        input(type="text", name="characterRace")
+                        p Two Exceptional Physical Traits:
+                        input(type="text", name="physicalTrait1")
+                        br
+                        input(type="text", name="physicalTrait2")
+        script(src="https://unpkg.com/tippy.js@3/dist/tippy.all.min.js")
+        script
+            include ../public/js/scripts.js
+
