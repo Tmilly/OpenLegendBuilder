@@ -4,7 +4,7 @@ html
         title #{title}
         link(rel='stylesheet', href='/css/style.css')
         meta(name='viewport', content='width=device-width, initial-scale=1')
-    body(onload="javascript:loadPage();")
+    body
         main
             block header
                 header.header
@@ -14,13 +14,26 @@ html
                     fieldset
                         h2 Character Description
                         p Character Name:
-                        input(type="text", name="characterName")
+                        input(type="text", name="characterName", id="characterName")
                         p Race:
-                        input(type="text", name="characterRace")
+                        input(type="text", name="characterRace", id="characterRace")
+                        p Size:
+                        input(type="text", name="characterSize", id="characterSize")
                         p Two Exceptional Physical Traits:
-                        input(type="text", name="physicalTrait1")
+                        input(type="text", name="physicalTrait1", id="physicalTrait")
                         br
-                        input(type="text", name="physicalTrait2")
+                        input(type="text", name="physicalTrait2", id="physicalTrait")
+                        p Two Defining Social Traits:
+                        input(type="text", name="socialTrait1", id="socialTrait")
+                        br
+                        input(type="text", name="socialTrait2", id="socialTrait")
+                        p Secret:
+                        input(type="text", name="characterSecret", id="characterSecret")
+                    fieldset
+                        h2 Choose Attributes
+                        p Remaining Points = 
+                        
+
         script(src="https://unpkg.com/tippy.js@3/dist/tippy.all.min.js")
         script
             include ../public/js/scripts.js

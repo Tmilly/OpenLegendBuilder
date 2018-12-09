@@ -1,6 +1,8 @@
-const express = require('express');
+import express from 'express'
 
 const app = express();
+
+//import tippy from 'tippy.js'
 
 app.set('view engine', 'pug');
 app.use(express.static(__dirname + '/public'));
