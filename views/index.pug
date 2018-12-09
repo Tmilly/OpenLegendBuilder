@@ -12,27 +12,9 @@ html
             block content
                 form(action="")
                     fieldset
-                        h2 Character Description
-                        p Character Name:
-                        input(type="text", name="characterName", id="characterName")
-                        p Race:
-                        input(type="text", name="characterRace", id="characterRace")
-                        p Size:
-                        input(type="text", name="characterSize", id="characterSize")
-                        p Two Exceptional Physical Traits:
-                        input(type="text", name="physicalTrait1", id="physicalTrait")
-                        br
-                        input(type="text", name="physicalTrait2", id="physicalTrait")
-                        p Two Defining Social Traits:
-                        input(type="text", name="socialTrait1", id="socialTrait")
-                        br
-                        input(type="text", name="socialTrait2", id="socialTrait")
-                        p Secret:
-                        input(type="text", name="characterSecret", id="characterSecret")
+                        include includes/characterDescription.pug
                     fieldset
-                        h2 Choose Attributes
-                        p Remaining Points = 
-                        
+                        include includes/attributeTable.pug
 
         script(src="https://unpkg.com/tippy.js@3/dist/tippy.all.min.js")
         script

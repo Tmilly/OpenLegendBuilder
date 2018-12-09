@@ -11,3 +11,66 @@ tippy(document.getElementById('characterSize'), {content: '<h3>Your size</h3><p 
 tippy(document.getElementById('physicalTrait'), {content: '<h3>Two exceptional physical traits</h3><p style="text-align:left;">Think of the first two features that other characters notice when they see you. Do your eyes glow red when you are angry? Are you seven feet tall? Is your hair a rainbow hue?</p>'});
 tippy(document.getElementById('socialTrait'), {content: '<h3>Two defining social traits</h3><p style="text-align:left;">Maybe you stutter when you’re nervous. Maybe you don’t trust anyone until they’ve proven themselves to you. Or, perhaps, you are a winsome bard who almost always talks in sing-song. Your two social traits should be characteristics that others will learn shortly after getting to know you.</p>'});
 tippy(document.getElementById('characterSecret'), {content: '<h3>A secret</h3><p style="text-align:left;">Your secret is something that other characters probably won’t find out about until they’ve gotten to know you quite well. It’s also a seed for great adventure that the GM can weave into the campaign.</p>'});
+
+function increaseValue(input, cost){    
+    //Increase Score
+    var value = parseInt(document.getElementById(input).value, 10);
+    value = isNaN(value) ? 0 : value;
+    value++;
+    if(value > 5){value = 5};
+    document.getElementById(input).value = value;    
+    
+    //Update Cost   
+    updateCost(value, cost);   
+}
+
+function decreaseValue(input, cost){    
+    var value = parseInt(document.getElementById(input).value, 10);
+    value = isNaN(value) ? 0 : value;
+    value--;
+    if(value < 0){value = 0};
+    document.getElementById(input).value = value;
+
+    //Update Cost   
+    updateCost(value, cost);
+}
+
+function updateCost(value, cost){
+    //Update Cost   
+    var costNum;
+
+    switch(value){
+        case 0:
+            costNum = "0";            
+            break;
+        case 1:
+            costNum = "1";
+            break;
+        case 2:
+            costNum = "3";
+            break;
+        case 3:
+            costNum = "6";
+            break;
+        case 4:
+            costNum = "10";
+            break;
+        case 5:
+            costNum = "15";
+            break;
+    }
+
+    document.getElementById(cost).innerHTML = costNum;
+}
+
+function updatePointsInvested(){
+    //add up cost of all attributes
+    //update points invested
+}
+
+function updatePointsAvailable(){
+    //subtract points invested from 40
+    //update points available
+    //stop user from increasing value on any other attributes
+}
+

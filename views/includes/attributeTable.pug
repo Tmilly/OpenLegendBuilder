@@ -1,0 +1,108 @@
+h2 Choose Attributes
+p Points Invested = 
+    span#pointsInvested 0
+p Points Available = 
+    span#pointsAvailable 40
+table
+    tr
+        th Attribute
+        th Score
+        th Cost
+    tr
+        td Physical
+    tr
+        td Agility
+        td
+            div.value-button.decrease#dec_agi(onclick="decreaseValue('agi_score', 'agi_cost')") -
+            input.value-number#agi_score(type="text", value="0")
+            div.value-button.increase#inc_agi(onclick="increaseValue('agi_score', 'agi_cost')") +
+        td#agi_cost 0
+    tr
+        td Fortitude
+        td
+            div.value-button.decrease#dec_fort(onclick="decreaseValue('fort_score', 'fort_cost')") -
+            input.value-number#fort_score(type="text", value="0")
+            div.value-button.increase#inc_fort(onclick="increaseValue('fort_score', 'fort_cost')") +
+        td#fort_cost 0
+    tr
+        td Might
+        td
+            div.value-button.decrease#dec_might(onclick="decreaseValue('might_score', 'might_cost')") -
+            input.value-number#might_score(type="text", value="0")
+            div.value-button.increase#inc_might(onclick="increaseValue('might_score', 'might_cost')") +
+        td#might_cost 0
+    tr
+        td Social
+    tr
+        td Deception
+        td
+            div.value-button.decrease#dec_dec(onclick="decreaseValue('dec_score', 'dec_cost')") -
+            input.value-number#dec_score(type="text", value="0")
+            div.value-button.increase#inc_dec(onclick="increaseValue('dec_score', 'dec_cost')") +
+        td#dec_cost 0
+    tr
+        td Presence
+        td
+            div.value-button.decrease#dec_pres(onclick="decreaseValue('pres_score', 'pres_cost')") -
+            input.value-number#pres_score(type="text", value="0")
+            div.value-button.increase#inc_pres(onclick="increaseValue('pres_score', 'pres_cost')") +
+        td#pres_cost 0
+    tr
+        td Persuasion
+        td
+            div.value-button.decrease#dec_pers(onclick="decreaseValue('pers_score', 'pers_cost')") -
+            input.value-number#pers_score(type="text", value="0")
+            div.value-button.increase#inc_pers(onclick="increaseValue('pers_score', 'pers_cost')") +
+        td#pers_cost 0
+    tr
+        td Mental
+    tr
+        td Learning
+        td#learn_score
+        td#learn_cost
+    tr
+        td Logic
+        td#logic_score
+        td#logic_cost
+    tr
+        td Perception
+        td#perc_score
+        td#perc_cost
+    tr
+        td Will
+        td#will_score
+        td#will_cost
+    tr
+        td Supernatural
+    tr
+        td Alteration
+        td#alt_score
+        td#alt_cost
+    tr
+        td Creation
+        td#creat_score
+        td#creat_cost
+    tr
+        td Energy
+        td#energy_score
+        td#energy_cost
+    tr
+        td Entropy
+        td#ent_score
+        td#ent_cost
+    tr
+        td Influence
+        td#infl_score
+        td#infl_cost
+    tr
+        td Movement
+        td#move_score
+        td#move_cost
+    tr
+        td Prescience
+        td#presc_score
+        td#presc_cost
+    tr
+        td Protection
+        td#prot_score
+        td#prot_cost
