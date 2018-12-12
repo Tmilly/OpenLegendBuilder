@@ -1,5 +1,11 @@
-var name;
+//Move all to external JS file instead of include
 
+//globals
+var name;
+var incValue = true;
+var attributes = {agility:{score:0, cost:0}, fortitude:{score:0, cost:0}, might:{score:0, cost:0}, deception:{score:0, cost:0}, presence:{score:0, cost:0}, persuasion:{score:0, cost:0}, learning:{score:0, cost:0}, logic:{score:0, cost:0}, perception:{score:0, cost:0}, will:{score:0, cost:0}, alteration:{score:0, cost:0}, creation:{score:0, cost:0}, energy:{score:0, cost:0}, entropy:{score:0, cost:0}, influence:{score:0, cost:0}, movement:{score:0, cost:0}, prescience:{score:0, cost:0}, protection:{score:0, cost:0}};
+
+//tooltips
 tippy.setDefaults({
     arrow: true,
     allowHTML: true
@@ -13,64 +19,213 @@ tippy(document.getElementById('socialTrait'), {content: '<h3>Two defining social
 tippy(document.getElementById('characterSecret'), {content: '<h3>A secret</h3><p style="text-align:left;">Your secret is something that other characters probably won’t find out about until they’ve gotten to know you quite well. It’s also a seed for great adventure that the GM can weave into the campaign.</p>'});
 
 function increaseValue(input, cost){    
-    //Increase Score
+    //increase score
     var value = parseInt(document.getElementById(input).value, 10);
     value = isNaN(value) ? 0 : value;
     value++;
     if(value > 5){value = 5};
-    document.getElementById(input).value = value;    
-    
-    //Update Cost   
-    updateCost(value, cost);   
+    //update attribute score & cost  
+    updateAttributesObject(input, value, cost);
+           
 }
 
 function decreaseValue(input, cost){    
+    //decrease score
     var value = parseInt(document.getElementById(input).value, 10);
     value = isNaN(value) ? 0 : value;
     value--;
     if(value < 0){value = 0};
-    document.getElementById(input).value = value;
-
-    //Update Cost   
-    updateCost(value, cost);
+    //update attribute score & cost
+    updateAttributesObject(input, value, cost);
+       
 }
 
-function updateCost(value, cost){
-    //Update Cost   
-    var costNum;
-
+function updateAttributesObject(input, value, cost){      
+    //calculate cost
     switch(value){
         case 0:
-            costNum = "0";            
+            costNum = 0;            
             break;
         case 1:
-            costNum = "1";
+            costNum = 1;
             break;
         case 2:
-            costNum = "3";
+            costNum = 3;
             break;
         case 3:
-            costNum = "6";
+            costNum = 6;
             break;
         case 4:
-            costNum = "10";
+            costNum = 10;
             break;
         case 5:
-            costNum = "15";
+            costNum = 15;
             break;
     }
-
-    document.getElementById(cost).innerHTML = costNum;
+    
+    //update value and cost in attributes object
+    switch(input){
+        case "agi_score":
+            attributes.agility.score = value; 
+            attributes.agility.cost = costNum;           
+            break;
+        case "fort_score":
+            attributes.fortitude.score = value;
+            attributes.fortitude.cost = costNum; 
+            break;
+        case "might_score":
+            attributes.might.score = value;
+            attributes.might.cost = costNum; 
+            break;
+        case "dec_score":
+            attributes.deception.score = value;
+            attributes.deception.cost = costNum; 
+            break;
+        case "pres_score":
+            attributes.presence.score = value;
+            attributes.presence.cost = costNum; 
+            break;
+        case "pers_score":
+            attributes.persuasion.score = value;
+            attributes.persuasion.cost = costNum; 
+            break;
+        case "learn_score":
+            attributes.learning.score = value;
+            attributes.learning.cost = costNum; 
+            break;
+        case "logic_score":
+            attributes.logic.score = value;
+            attributes.logic.cost = costNum; 
+            break;
+        case "perc_score":
+            attributes.perception.score = value;
+            attributes.perception.cost = costNum; 
+            break;
+        case "will_score":
+            attributes.will.score = value;
+            attributes.will.cost = costNum; 
+            break;
+        case "alt_score":
+            attributes.alteration.score = value;
+            attributes.alteration.cost = costNum; 
+            break;
+        case "creat_score":
+            attributes.creation.score = value;
+            attributes.creation.cost = costNum; 
+            break;
+        case "energy_score":
+            attributes.energy.score = value;
+            attributes.energy.cost = costNum; 
+            break;
+        case "ent_score":
+            attributes.entropy.score = value;
+            attributes.entropy.cost = costNum; 
+            break;
+        case "infl_score":
+            attributes.influence.score = value;
+            attributes.influence.cost = costNum; 
+            break;
+        case "move_score":
+            attributes.movement.score = value;
+            attributes.movement.cost = costNum; 
+            break;
+        case "presc_score":
+            attributes.prescience.score = value;
+            attributes.prescience.cost = costNum; 
+            break;
+        case "prot_score":
+            attributes.protection.score = value;
+            attributes.protection.cost = costNum; 
+            break;
+    }  
+    //update form
+    updatePointsValues(input, cost)
 }
 
-function updatePointsInvested(){
+function updatePointsValues(input, cost){
     //add up cost of all attributes
-    //update points invested
-}
-
-function updatePointsAvailable(){
-    //subtract points invested from 40
-    //update points available
-    //stop user from increasing value on any other attributes
+    var costNum = attributes.agility.cost + attributes.fortitude.cost + attributes.might.cost + attributes.deception.cost + attributes.presence.cost + attributes.persuasion.cost + attributes.learning.cost + attributes.logic.cost + attributes.perception.cost + attributes.will.cost + attributes.alteration.cost + attributes.creation.cost + attributes.energy.cost + attributes.entropy.cost + attributes.influence.cost + attributes.movement.cost + attributes.prescience.cost + attributes.protection.cost;
+    var availablePoints = 40 - costNum; 
+    
+    //only update form if update does not set points available to negative value
+    if(availablePoints >= 0){
+        document.getElementById('pointsInvested').innerHTML = costNum;
+        document.getElementById('pointsAvailable').innerHTML = availablePoints;        
+        
+        switch(input){
+            case "agi_score":
+                document.getElementById(input).value = attributes.agility.score; 
+                document.getElementById(cost).innerHTML = attributes.agility.cost;           
+                break;
+            case "fort_score":
+                document.getElementById(input).value = attributes.fortitude.score;
+                document.getElementById(cost).innerHTML = attributes.fortitude.cost; 
+                break;
+            case "might_score":
+                document.getElementById(input).value = attributes.might.score;
+                document.getElementById(cost).innerHTML = attributes.might.cost; 
+                break;
+            case "dec_score":
+                document.getElementById(input).value = attributes.deception.score;
+                document.getElementById(cost).innerHTML = attributes.deception.cost; 
+                break;
+            case "pres_score":
+                document.getElementById(input).value = attributes.presence.score;
+                document.getElementById(cost).innerHTML = attributes.presence.cost; 
+                break;
+            case "pers_score":
+                document.getElementById(input).value = attributes.persuasion.score;
+                document.getElementById(cost).innerHTML = attributes.persuasion.cost; 
+                break;
+            case "learn_score":
+                document.getElementById(input).value = attributes.learning.score;
+                document.getElementById(cost).innerHTML = attributes.learning.cost; 
+                break;
+            case "logic_score":
+                document.getElementById(input).value =attributes.logic.score;
+                document.getElementById(cost).innerHTML = attributes.logic.cost; 
+                break;
+            case "perc_score":
+                document.getElementById(input).value =attributes.perception.score;
+                document.getElementById(cost).innerHTML = attributes.perception.cost; 
+                break;
+            case "will_score":
+                document.getElementById(input).value = attributes.will.score;
+                document.getElementById(cost).innerHTML = attributes.will.cost; 
+                break;
+            case "alt_score":
+                document.getElementById(input).value = attributes.alteration.score;
+                document.getElementById(cost).innerHTML = attributes.alteration.cost; 
+                break;
+            case "creat_score":
+                document.getElementById(input).value = attributes.creation.score;
+                document.getElementById(cost).innerHTML = attributes.creation.cost; 
+                break;
+            case "energy_score":
+                document.getElementById(input).value = attributes.energy.score;
+                document.getElementById(cost).innerHTML = attributes.energy.cost; 
+                break;
+            case "ent_score":
+                document.getElementById(input).value = attributes.entropy.score;
+                document.getElementById(cost).innerHTML = attributes.entropy.cost; 
+                break;
+            case "infl_score":
+                document.getElementById(input).value = attributes.influence.score;
+                document.getElementById(cost).innerHTML = attributes.influence.cost; 
+                break;
+            case "move_score":
+                document.getElementById(input).value = attributes.movement.score;
+                document.getElementById(cost).innerHTML = attributes.movement.cost; 
+                break;
+            case "presc_score":
+                document.getElementById(input).value = attributes.prescience.score;
+                document.getElementById(cost).innerHTML = attributes.prescience.cost; 
+                break;
+            case "prot_score":
+                document.getElementById(input).value = attributes.protection.score;
+                document.getElementById(cost).innerHTML = attributes.protection.cost; 
+                break;
+        }
+    }    
 }
 
